@@ -1,0 +1,13 @@
+disable_functions,system-passthru-exec-shell_exec-popen-phpinfo-chdir-chroot-dir-getcwd-opendir-readdir-scandir-fopen-unlink-delete-copy-mkdir-rmdir-rename-file-file_get_contents-fputs-fwrite-chgrp-chmod-chown,限制函数
+allow_url_fopen,Off,关闭本地包含
+allow_url_include,Off,关闭远程包含
+expose_php,Off,关闭PHP版本信息在http头中的泄漏
+register_globals,Off,关闭注册全局变量
+magic_quotes_gpc,On,打开magic_quotes_gpc来防止SQL注入
+display_errors,Off,错误信息控制
+log_errors,On,建议打开错误日志
+
+
+
+
+

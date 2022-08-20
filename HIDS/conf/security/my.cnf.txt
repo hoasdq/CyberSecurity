@@ -1,0 +1,5 @@
+user,mysql,使用非root用户启动mysql
+local-infile,0,禁用local_infile选项会降低攻击者通过SQL注入漏洞器读取敏感文件的能力
+skip_symbolic_links,yes,2.5.6以上版本应禁用符号链接以防止各种安全风险
+log-raw,off,当log-raw记录启用时，有权访问日志文件的人可能会看到纯文本密码
+

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<conf>
+
+<rule>
+    <did >1</did>
+    <rid>100</rid>
+    <match>404</match>
+    <description>客户端错误</description>
+    <level>5</level>
+</rule>
+
+<rule>
+    <did>1</did>
+    <rid if_times="yes" frequency="3" time="60" response="no">101</rid>
+    <match>404</match>
+    <description>疑似爆破</description>
+    <level>10</level>
+</rule>
+
+<rule>
+    <did>1</did>
+    <rid>102</rid>
+    <match>select|and|or|order%20by|updatexml|union|information\.schema|\|\|</match>
+    <description>疑似SQL注入</description>
+    <level>10</level>
+</rule>
+
+
+
+<rule>
+    <did>1</did>
+    <rid>103</rid>
+    <match>%3Cscript%3E|%3C%2Fscript%3E|%3Ca|%3Cimg|javascript|onclick|onblur|onmouseover|alert|document.cookie|javascript|onclick|onblur|onmouseover|alert|document.cookie</match>
+    <description>疑似XSS注入</description>
+    <level>10</level>
+</rule>
+
+
+<rule>
+    <did>3</did>
+    <rid>200</rid>
+    <match>(\S+ \d+ \S+) (\S+) sshd\S+ Failed password for (\S+) from (\S+)</match>
+    <description>ssh登陆失败</description>
+    <level>5</level>
+</rule>
+
+<rule>
+    <did>3</did>
+    <rid if_times="yes" frequency="3" time="60" response="no">201</rid>
+    <match>(\S+ \d+ \S+) (\S+) sshd\S+ Failed password for (\S+) from (\S+)</match>
+    <description>疑似ssh爆破</description>
+    <level>10</level>
+</rule>
+
+
+
+
+<rule>
+    <did>3</did>
+    <rid>202</rid>
+    <match>(\S+ \d+ \S+) (\S+) sshd\S+ Accepted password for (\S+) from (\S+)</match>
+    <description>ssh登陆成功</description>
+    <level>3</level>
+</rule>
+
+
+
+<rule>
+    <did>4</did>
+    <rid>300</rid>
+    <match>(\S+ \S+) \d+ \[Warning\] IP address '(\S+)'</match>
+    <description>这是mysql登录日志</description>
+    <level>3</level>
+</rule>
+
+
+<rule>
+    <did>5</did>
+    <rid>501</rid>
+    <match>firewalld.service.+\s+Loaded: .+\s+Active: inactive.+\s+Docs: .+</match>
+    <description>防火墙未开启</description>
+    <level>10</level>
+</rule>
+
+
+<rule>
+    <did>6</did>
+    <rid>601</rid>
+    <match>bash|nc|telnet|awk|python|php|sh |ruby|openssl</match>
+    <description>注意！疑似反弹shell</description>
+    <level>15</level>
+</rule>
+
+<rule>
+    <did>7</did>
+    <rid>701</rid>
+    <match>\S+ \S+ \d+ \S+,\s+\S+,\s+\d+ \S+\s+ load average: (0\.[1-9]\d|1\.00), (0\.[0-9]\d|1\.00), (0\.[0-9]\d|1\.00)</match>
+    <description>系统(CPU)负载过大</description>
+    <level>10</level>
+</rule>
+
+<rule>
+    <did>8</did>
+    <rid>801</rid>
+    <match>\/bin\/bash</match>
+    <!-- <match>\/bin\/bash|\/bin\/sh|\/bin\/env|\/bin\/vi|\/bin\/awk|\/bin\/cat\|\/usr\/bin\/curl|\/bin\/find</match> -->
+    <description>SUID出现危险项</description>
+    <level>10</level>
+</rule>
+
+<rule>
+    <did>9</did>
+    <rid>901</rid>
+    <match>REPLACE</match>
+    <description>新增或修改定时任务</description>
+    <level>10</level>
+</rule>
+
+<rule>
+    <did>10</did>
+    <rid>1001</rid>
+    <match>redis|bin\/bash|\/root\/\.ssh\/authorized_keys</match>
+    <description>定时任务内容出现危险项</description>
+    <level>10</level>
+</rule>
+
+
+
+
+</conf>
+

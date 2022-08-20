@@ -1,0 +1,10 @@
+eval
+eval\s*\(\$_POST
+eval\s*\(\$_GET
+eval\s*\(\$_REQUEST
+substr\(md5\(\$_REQUEST
+\(\$_=\S*\$_GET
+assert\s*\(\$_REQUEST
+<%execute
+execute request
+<%eval

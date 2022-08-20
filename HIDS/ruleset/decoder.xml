@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<conf>
+<decoder>
+    <did>1</did>
+    <match>(\d+\.\d+\.\d+\.\d+) - - (\[\S+ \S+\]) "(\S+) (\/\S+) (HTTP\S+) (\d+) \d+ \S+ \S+ \((\S+ \S+ \S+ \S+ \S+)\)</match>
+    <option>SRC,攻击时间,请求方法,URL,HTTP协议版本,状态码,主机操作系统</option>
+    <description>这是web_access日志</description>
+    <level>1</level>
+</decoder>
+
+<decoder>
+    <did>2</did>
+    <!-- <match>(\S+ \S+) \[error\] </match> -->
+    <match>(\S+ \S+) \[error\] \S+ \S+ \S+ \S+ (\S+ \S+ \S+) .+client: (\S+), server: \S+, request: "(\S+) \S+ \S+ \S+ "(\S+)", \S+ "(\S+)"</match>
+    <option>时间,失败原因,SRC,请求方法,URL,服务器</option>
+    <description>这是web_error日志</description>
+    <level>1</level>
+</decoder>
+
+
+
+<decoder>
+    <did>3</did>
+    <!-- <match>sshd</match> -->
+    <match>(\S+ \d+ \S+) (\S+) sshd\S+ (\S+) password for (\S+) from (\S+)</match>
+    <option>时间,提供服务主机,状态,用户名,SRC</option>
+    <description>这是sshd登录日志</description>
+    <level>1</level>
+</decoder>
+
+
+<decoder>
+    <did>4</did>
+    <!-- <match>sshd</match> -->
+    <match>(\S+ \S+) \d+ \[Warning\] IP address '(\S+)'</match>
+    <option>日期,SRC</option>
+    <description>这是mysql登录日志</description>
+    <level>1</level>
+</decoder>
+
+
+<decoder>
+    <did>5</did>
+    <match>firewalld.service.+\s+Loaded: (.+)\s+Active: (.+)\s+Docs: (.+)</match>
+    <option>Loaded,Active,Docs</option>
+    <description>这是检测防火墙状态日志</description>
+    <level>1</level>
+</decoder>
+
+<decoder>
+    <did>5</did>
+    <match>firewalld.service.+\s+Loaded: (.+)\s+Active: (.+)\s+Docs: (.+)</match>
+    <option>Loaded,Active,Docs</option>
+    <description>这是检测防火墙状态日志</description>
+    <level>1</level>
+</decoder>
+
+<decoder>
+    <did>6</did>
+    <match>tcp\s+\d+\s+\d+ (\S+):(\d+)\s+(\S+):(\d+)\s+(\S+) \d+\/(\S+)</match>
+    <option>local_ip,local_port,attack_ip,attack_port,action,method</option>
+    <description>这是检测netstat的日志</description>
+    <level>1</level>
+</decoder>
+
+
+<decoder>
+    <did>7</did>
+    <match>(\S+) \S+ (\d+ \S+),\s+\S+,\s+(\d+) \S+\s+ load average: (\S+), (\S+), (\S+)</match>
+    <option>time,运行天数,用户数,过去1分钟负载,过去5分钟负载,过去15分钟负载</option>
+    <description>这是检测系统(CPU)负载的日志</description>
+    <level>1</level>
+</decoder>
+
+<decoder>
+    <did>8</did>
+    <match>\/usr\/bin\/\S+|\/usr\/sbin\/\S+|\/usr\/lib\/\S+|\/usr\/libexec\/\S+</match>
+    <option>无</option>
+    <description>这是检测SUID的日志</description>
+    <level>1</level>
+</decoder>
+
+
+
+<decoder>
+    <did>9</did>
+    <match>(\S+ \S+ \S+) (\S+) crontab\S+: \((\S+)\) .+ \((\S+)\)</match>
+    <option>时间,本地IP,修改者,定时任务所属者</option>
+    <description>这是检测定时任务的日志</description>
+    <level>1</level>
+</decoder>
+
+<decoder>
+    <did>10</did>
+    <match>\S+ \S+ \S+ \S+ \S+</match>
+    <option>无</option>
+    <description>这是检测定时任务内容的日志</description>
+    <level>1</level>
+</decoder>
+
+
+
+</conf>
+
