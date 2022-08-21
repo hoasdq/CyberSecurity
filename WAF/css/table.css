@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+table
+{
+    border-collapse:collapse;
+    margin: auto;
+
+}
+table,th, td
+{
+    align-items: center;
+    border: 1.5px solid black;
+}
+
+th
+{
+    background-color:rgb(244, 154, 19);
+    color:white;
+}
+td{width:150px;height:30px}

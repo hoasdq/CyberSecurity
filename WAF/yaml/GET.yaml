@@ -1,0 +1,191 @@
+-
+    rid:
+        9100001
+    attribute:
+        SQL注入
+    rule:
+        union|select|insert|updatexml\(|sleep\(|length\(|substr\(|order\s+by|left\(|right\(|elt\(|mid\(|ord\(|ascii\(|concat|group_concat|extractvalue\(|database\(|user\(|version\(|information_schema|where|columns|%20and%20|#|--%20|--+|%20or%20|\|\||&&
+    priority:
+        2
+    description:
+        检测到sql注入关键字 
+-
+    rid:
+        9100002
+    attribute:
+        SQL注入
+    rule:
+        union|select|insert|updatexml\(|sleep\(|length\(|substr\(|order\s+by|left\(|right\(|elt\(|mid\(|ord\(|ascii\(|concat|group_concat|extractvalue\(|database\(|user\(|version\(|information_schema|where|columns|%20and%20|#|--%20|--+|%20or%20|\|\||&&
+    priority:
+        1
+    description:
+        疑似sqlmap扫描 
+    times:
+        5
+-
+    rid:
+        9100003
+    attribute:
+        SQL注入
+    rule:
+        select(%20|\S|\/\*\*\/)+from|union(%20|\S|\/\*\*\/)+select|insert(%20|\S|\/\*\*\/)+into|order(%20|\S|\/\*\*\/)+by|delete(%20|\S|\/\*\*\/)+from
+    priority:
+        1
+    description:
+        很大可能sql注入
+        #select(id)from(user)、select/**/id/**/from/**/user、select id from user    
+-
+    rid:
+        9200001
+    attribute:
+        命令注入
+    rule:
+        exec\(|system\(|passthru\(|shell_exec\(|=rm|=ifconfig|=cat|=ping|=netstat|=uptime|=chmod|=chown|=cromtab|=find|=reboot|=shundown|=echo|=mysql|=ssh|=ps|=crontab|=systemctl|=ip(%20)+addr|=whoami|=useradd
+    priority:
+        2
+    description:
+        检测到命令注入关键字
+
+-
+    rid:
+        9200002
+    attribute:
+        命令注入
+    rule:
+        exec\(|system\(|passthru\(|shell_exec\(|=rm|=ifconfig|=cat|=ping|=netstat|=uptime|=chmod|=chown|=cromtab|=find|=reboot|=shundown|=echo|=mysql|=ssh|=ps|=crontab|=systemctl|=ip(%20)+addr|=whoami|=useradd
+    priority:
+        1
+    description:
+        命令注入爆破
+    times:
+        5
+
+-
+    rid:
+        9300001
+    attribute:
+        XSS注入
+    rule:
+        javascript|%3cscript|alert\(|onload=|=http:\/\/|onclick=|onmouseover=|onerror=|%3ca(%20)+href=|%3cimg(%20)+src=
+    priority:
+        2
+    description:
+        检测到XSS注入关键字
+-
+    rid:
+        9300002
+    attribute:
+        XSS注入
+    rule:
+        javascript|%3cscript|alert\(|onload=|=http:\/\/|onclick=|onmouseover=|onerror=|%3ca(%20)+href=|%3cimg(%20)+src=
+    priority:
+        1
+    description:
+        XSS注入爆破
+    times:
+        5
+
+-
+    rid:
+        9400001
+    attribute:
+        木马上传
+    rule:
+        eval|assert|system\(|exec|\$_POST|\$_GET|\$_REQUEST|substr\(md5\(\$_|%3c%25execute
+    priority:
+        2
+    description:
+        检测到木马上传关键字
+
+-
+    rid:
+        9500001
+    attribute:
+        登录
+    rule:
+        login.html|login.php|admin.php|admin.html|phpmyadmin
+    priority:
+        4
+    description:
+        登录页面
+-
+    rid:
+        9500002
+    attribute:
+        登录
+    rule:
+        login.html|login.php|admin.php|admin.html|phpmyadmin
+    priority:
+        1
+    description:
+        登录爆破
+    times:
+        5
+
+
+-
+    rid:
+        9700001
+    attribute:
+        CC攻击
+    rule:
+        \/
+    priority:
+        4
+    description:
+        访问页面
+
+-
+    rid:
+        9700002
+    attribute:
+        CC攻击
+    rule:
+        \/
+    priority:
+        1
+    description:
+        疑似CC攻击
+    times:
+        10
+
+
+-
+    rid:
+        9900001
+    attribute:
+        SSRF
+    rule:
+        \?\S+=file:\/\/|\?\S+= http:\/\/|\?\S+=https:\/\/|\?\S+=dict:\/\/|\?\S+=gopher:\/\/|\?\S+=phar:\/\/
+    priority:
+        2
+    description:
+        检测到SSRF攻击
+    
+-
+    rid:
+        91000001
+    attribute:
+        反序列化
+    rule:
+        :\S+:\S+:\S+:\S+:\S+:\S+|phar:\/\/\S+\.txt
+    priority:
+        2
+    description:
+        检测到反序列化攻击
+    
+
+-
+    rid:
+        91100001
+    attribute:
+        文件包含
+    rule:
+        \?\S+=file:\/\/|\?\S+=ftp:\/\/|\?\S+=http:\/\/|\?\S+=php:\/\/|\?\S+=zlib:\/\/|\?\S+=data:\/\/|\?\S+=glob:\/\/|\?\S+=phar:\/\/|\?\S+=ssh2:\/\/|\?\S+=rar:\/\/|\?\S+=ogg:\/\/|\?\S+=expect:\/\/
+    priority:
+        2
+    description:
+        检测到文件包含攻击
+
+
+

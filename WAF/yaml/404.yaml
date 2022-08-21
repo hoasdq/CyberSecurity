@@ -1,0 +1,25 @@
+-
+    rid:
+        71200001
+    attribute:
+        404
+    rule:
+        不需要
+    priority:
+        4
+    description:
+        404页面
+
+-
+    rid:
+        71200002
+    attribute:
+        404
+    rule:
+        不需要
+    priority:
+        1
+    description:
+        疑似404扫描
+    times:
+        10

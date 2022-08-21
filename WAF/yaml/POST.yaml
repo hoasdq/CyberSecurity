@@ -1,0 +1,205 @@
+-
+    rid:
+        8100001
+    attribute:
+        SQL注入
+    rule:
+        union|select|insert|updatexml\(|sleep\(|length\(|substr\(|order\s+by|left\(|right\(|elt\(|mid\(|ord\(|ascii\(|concat|group_concat|extractvalue\(|database\(|user\(|version\(|information_schema|where|columns|\s+and\s+|#|\s+or\s+|\|\||&&
+    priority:
+        2
+    description:
+        检测到sql注入关键字 
+-
+    rid:
+        8100002
+    attribute:
+        SQL注入
+    rule:
+        union|select|insert|updatexml\(|sleep\(|length\(|substr\(|order\s+by|left\(|right\(|elt\(|mid\(|ord\(|ascii\(|concat|group_concat|extractvalue\(|database\(|user\(|version\(|information_schema|where|columns|\s+and\s+|#|\s+or\s+|\|\||&&
+    priority:
+        1
+    description:
+        疑似sqlmap扫描 
+    times:
+        5
+-
+    rid:
+        8100003
+    attribute:
+        SQL注入
+    rule:
+        select(\s|\/\*\*\/)+from|union(\s|\/\*\*\/)+select|insert(\s|\/\*\*\/)+into|order(\s|\/\*\*\/)+by|delete(\s|\/\*\*\/)+from
+    priority:
+        1
+    description:
+        很大可能sql注入
+        #select(id)from(user)、select/**/id/**/from/**/user、select id from user
+
+-
+    rid:
+        8200001
+    attribute:
+        命令注入
+    rule:
+        exec\(|system\(|passthru\(|shell_exec\(|=rm|=ifconfig|=cat|=ping|=netstat|=uptime|=chmod|=chown|=cromtab|=find|=reboot|=shundown|=echo|=mysql|=ssh|=ps|=crontab|=systemctl|=ip\s+addr|=whoami|=useradd
+    priority:
+        2
+    description:
+        检测到命令注入关键字
+
+-
+    rid:
+        8200002
+    attribute:
+        命令注入
+    rule:
+        exec\(|system\(|passthru\(|shell_exec\(|=rm|=ifconfig|=cat|=ping|=netstat|=uptime|=chmod|=chown|=cromtab|=find|=reboot|=shundown|=echo|=mysql|=ssh|=ps|=crontab|=systemctl|=ip\s+addr|=whoami|=useradd
+    priority:
+        1
+    description:
+        命令注入爆破
+    times:
+        5
+
+-
+    rid:
+        8300001
+    attribute:
+        XSS注入
+    rule:
+        javascript|<script|alert\(|onload=|=http:\/\/|onclick=|onmouseover=|onerror=|<a\s+href=|<img\s+src=
+    priority:
+        2
+    description:
+        检测到XSS注入关键字
+
+-
+    rid:
+        8300002
+    attribute:
+        XSS注入
+    rule:
+        javascript|<script|alert\(|onload=|=http:\/\/|onclick=|onmouseover=|onerror=|<a\s+href=|<img\s+src=
+    priority:
+        1
+    description:
+        XSS扫描
+    times:
+        5
+
+-
+    rid:
+        8400001
+    attribute:
+        木马上传
+    rule:
+        eval|assert|system\(|exec|\$_POST|\$_GET|\$_REQUEST|substr\(md5\(\$_|<%execute
+    priority:
+        2
+    description:
+        检测到木马上传关键字
+
+-
+    rid:
+        8600001
+    attribute:
+        登录
+    rule:
+        login.html|login.php|admin.php|admin.html|phpmyadmin
+    priority:
+        4
+    description:
+        登录页面
+-
+    rid:
+        8600002
+    attribute:
+        登录
+    rule:
+        login.html|login.php|admin.php|admin.html|phpmyadmin
+    priority:
+        1
+    description:
+        登录爆破
+    times:
+        5
+-
+    rid:
+        8700001
+    attribute:
+        CC攻击
+    rule:
+        \/
+    priority:
+        4
+    description:
+        访问页面
+
+-
+    rid:
+        8700002
+    attribute:
+        CC攻击
+    rule:
+        \/
+    priority:
+        1
+    description:
+        疑似CC攻击
+    times:
+        10
+
+-
+    rid:
+        8800001
+    attribute:
+        XXE
+    rule:
+        <!ENTITY\s+\S+\s+(SYSTEM|PUBLIC)|SYSTEM
+    priority:
+        2
+    description:
+        检测到XXE攻击
+    
+
+-
+    rid:
+        8900001
+    attribute:
+        SSRF
+    rule:
+        \?\S+=file:\/\/|\?\S+= http:\/\/|\?\S+=https:\/\/|\?\S+=dict:\/\/|\?\S+=gopher:\/\/|\?\S+=phar:\/\/
+    priority:
+        2
+    description:
+        检测到SSRF攻击
+    
+-
+    rid:
+        81000001
+    attribute:
+        反序列化
+    rule:
+        :\S+:\S+:\S+:\S+:\S+:\S+|phar:\/\/\S+\.txt
+    priority:
+        2
+    description:
+        检测到反序列化攻击
+    
+
+-
+    rid:
+        81100001
+    attribute:
+        文件包含
+    rule:
+        \?\S+=file:\/\/|\?\S+=ftp:\/\/|\?\S+=http:\/\/|\?\S+=php:\/\/|\?\S+=zlib:\/\/|\?\S+=data:\/\/|\?\S+=glob:\/\/|\?\S+=phar:\/\/|\?\S+=ssh2:\/\/|\?\S+=rar:\/\/|\?\S+=ogg:\/\/|\?\S+=expect:\/\/
+    priority:
+        2
+    description:
+        检测到文件包含攻击
+
+
+
+
+
